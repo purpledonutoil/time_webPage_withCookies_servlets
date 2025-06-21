@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+war {
+    archiveFileName = 'time.war'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//    webAppDirectory = file('src/main/webapp')
+//    from 'src/main' // adds a file-set to the root of the archive
+//    webInf { from 'src/main/webapp/WEB-INF' } // adds a file-set to the WEB-INF dir.
+//    webXml = file('src/main/webapp/WEB-INF/web.xml') // copies a file to WEB-INF/web.xml
+}
