@@ -7,7 +7,7 @@ import java.time.ZoneId;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
 
-@WebServlet(value = "/")
+@WebServlet(value = "/time")
 public class Time extends HttpServlet {
 
     @Override
@@ -27,7 +27,6 @@ public class Time extends HttpServlet {
         zoneId = ZoneId.of(timezone);
         time = OffsetDateTime.now(zoneId).format(formatter) + timezone;
         resp.getWriter().write(time);
-        resp.getWriter().close();
     }
 }
 

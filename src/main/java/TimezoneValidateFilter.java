@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.ZoneId;
 
-@WebFilter("/")
+@WebFilter("/time")
 public class TimezoneValidateFilter extends HttpFilter {
 
     @Override
