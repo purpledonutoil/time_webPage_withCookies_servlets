@@ -15,9 +15,9 @@ public class TimezoneValidateFilter extends HttpFilter {
                             FilterChain chain) throws IOException, ServletException {
         String timezone = req.getParameter("timezone");
 
-        if (timezone == null || !isValidTimezone(timezone)) {
+        if (!isValidTimezone(timezone)) {
             resp.setStatus(400);
-            resp.getWriter().write("Invalid timezone");
+            resp.getWriter().write("Invalid timezone" + timezone);
         } else {
             chain.doFilter(req, resp);
         }
@@ -25,6 +25,9 @@ public class TimezoneValidateFilter extends HttpFilter {
 
     private boolean isValidTimezone(String timezone) {
         try {
+            if (timezone == null) {
+                return true;
+            }
             timezone = timezone.replace(" ", "+");
             ZoneId.of(timezone);
             return true;
